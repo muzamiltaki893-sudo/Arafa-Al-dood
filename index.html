@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>منصة طلاب الصحة العامة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4c1d95;--p2:#7c3aed;--bg:#ece6ff;--card:#fff;--tx:#2e1065;--soft:#f3eeff;--ln:#d8ccff}
+.dark{--bg:#150d2b;--card:#241546;--tx:#ece6ff;--soft:#2f1d5a;--ln:#4a3380}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Cairo,system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;display:flex;justify-content:center}
+#app{width:100%;max-width:520px;min-height:100vh;padding-bottom:env(safe-area-inset-bottom)}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+input,select,textarea{font:inherit;width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--ln);background:var(--card);color:var(--tx);margin:4px 0 10px}
+.hero{background:linear-gradient(160deg,#6d28d9,#3b0f8c);color:#fff;text-align:center;padding:22px 16px 36px;border-radius:0 0 50% 50%/0 0 34px 34px;position:relative}
+.hero .ic{position:absolute;top:18px;width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:14px;font-size:22px;color:#fff}
+.ic.l{left:16px}.ic.r{right:16px}
+.av{width:128px;height:128px;border-radius:50%;border:5px solid rgba(255,255,255,.6);box-shadow:0 0 0 6px rgba(167,139,250,.5);object-fit:cover;object-position:top;background:#fff;margin:6px auto 12px;display:block}
+.hero h1{font-size:28px;font-weight:800;direction:ltr}.hero p{font-size:16px;font-weight:600;direction:ltr;opacity:.95}
+.bar{margin:14px 14px 0;background:var(--card);border-radius:22px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px #7c3aed22;overflow:hidden}
+.bar .mq{flex:1;overflow:hidden;direction:ltr;white-space:nowrap;border-inline-start:2px solid var(--ln);padding-inline-start:8px}
+.bar .mq span{display:inline-block;padding-left:100%;animation:mq 22s linear infinite;font-weight:600;color:var(--p2)}
+@keyframes mq{to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.bar .mq span{animation:none;padding:0}}
+.card{background:var(--card);border-radius:24px;padding:16px;margin:14px;box-shadow:0 6px 18px #7c3aed22}
+.post{display:flex;gap:12px;align-items:center}.post img,.ph{width:42%;aspect-ratio:1;border-radius:16px;object-fit:cover;background:linear-gradient(135deg,#a78bfa,#6d28d9)}
+.tag{display:inline-block;background:linear-gradient(90deg,#6d28d9,#4c1d95);color:#fff;border-radius:16px;padding:4px 14px;font-weight:700;font-size:14px}
+.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;margin:6px 0}
+.btn{background:linear-gradient(90deg,#6d28d9,#4c1d95);color:#fff;border-radius:16px;padding:9px 18px;font-weight:700;display:inline-block;text-decoration:none;font-size:14px}
+.btn.o{background:var(--soft);color:var(--tx)}.btn.r{background:#b91c1c}
+.dots{text-align:center;margin-top:8px}.dots i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ln);margin:0 3px}.dots i.on{background:var(--p2)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px}
+.tile{background:linear-gradient(160deg,var(--card),var(--soft));border-radius:22px;padding:14px 4px;text-align:center;font-weight:800;box-shadow:0 4px 12px #7c3aed22;border:1px solid var(--ln)}
+.tile b{display:block;font-size:38px;margin-bottom:4px}
+.sup{display:block;margin:0 14px;background:linear-gradient(90deg,#6d28d9,#3b0f8c);color:#fff;border-radius:24px;padding:14px;text-align:center;font-weight:800;text-decoration:none}
+.foot{text-align:center;font-size:12px;padding:18px 10px;opacity:.8}
+.top{position:sticky;top:0;z-index:5;background:linear-gradient(90deg,#6d28d9,#3b0f8c);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;font-weight:800}
+.top button{background:rgba(255,255,255,.18);color:#fff;border-radius:12px;width:38px;height:38px;font-size:18px}
+.pg{padding:14px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:var(--card);border-radius:20px;padding:12px;box-shadow:0 4px 12px #7c3aed22;margin-bottom:12px}
+.item img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:linear-gradient(135deg,#a78bfa,#6d28d9)}
+.item h3{font-size:16px;margin:6px 0 2px}.item p{font-size:13px;opacity:.85;margin-bottom:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap}.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{flex:1;padding:9px;border-radius:14px;background:var(--soft);font-weight:700}.tabs .on{background:var(--p2);color:#fff}
+.opt{display:block;width:100%;text-align:start;background:var(--card);border:2px solid var(--ln);border-radius:14px;padding:12px;margin:8px 0;font-weight:600}
+.opt.sel{border-color:var(--p2);background:var(--soft)}.opt.ok{border-color:#16a34a;background:#16a34a22}.opt.no{border-color:#dc2626;background:#dc262622}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;margin:10px 0}.stat div{background:var(--soft);border-radius:16px;padding:10px}.stat b{font-size:22px;display:block}
+.drawer{position:fixed;inset:0;background:#0008;z-index:10;display:flex}.drawer>div{width:280px;max-width:85%;background:var(--card);padding:18px;overflow:auto;height:100%}
+.drawer button.m{display:block;width:100%;text-align:start;padding:12px;border-radius:14px;background:var(--soft);margin-bottom:8px;font-weight:700}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mem button{aspect-ratio:1;border-radius:14px;background:var(--p2);font-size:28px}.mem .up{background:var(--card);border:2px solid var(--p2)}
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.cg button{padding:14px 0;border-radius:12px;background:var(--soft);font-size:18px;font-weight:700}
+.news .big{grid-column:1/-1}hr{border:0;border-top:1px solid var(--ln);margin:12px 0}
+.res{background:var(--soft);border-radius:14px;padding:10px;margin-top:8px;font-weight:700}
+</style>
+</head>
+<body><div id="app"></div>
+<script src="data.js"></script>
+<script>
+/* ---------- الحالة والتخزين المحلي ---------- */
+const load=(k,d)=>{try{return JSON.parse(localStorage[k])||d}catch(e){return d}};
+let S=load('ph_set',{theme:'light',lang:'ar'}),U=load('ph_user',null),ST=load('ph_stat',{pts:0,games:0,hist:[]});
+const save=()=>{localStorage.ph_set=JSON.stringify(S);localStorage.ph_user=JSON.stringify(U);localStorage.ph_stat=JSON.stringify(ST)};
+const T={ar:{quiz:'الاختبارات',lib:'المكتبة',kit:'حزمة أدوات',games:'ألعاب',news:'نشرة الصحة',tools:'أدوات',sup:'الدعم الفني',latest:'آخر منشور',all:'قراءة كل المنشورات',about:'عن الموقع',set:'الإعدادات',dark:'الوضع الليلي / النهاري',lang:'English',back:'رجوع',prof:'الملف الشخصي',home:'الرئيسية',rights:'جميع الحقوق محفوظة لطالبة',start:'ابدأ اختبار',read:'قراءة',dl:'تحميل',open:'فتح',posts:'المنشورات'},
+en:{quiz:'Quizzes',lib:'Library',kit:'Toolkit',games:'Games',news:'Health Bulletin',tools:'Tools',sup:'Support',latest:'Latest post',all:'Read all posts',about:'About',set:'Settings',dark:'Dark / Light mode',lang:'العربية',back:'Back',prof:'Profile',home:'Home',rights:'All rights reserved for student',start:'Start quiz',read:'Read',dl:'Download',open:'Open',posts:'Posts'}};
+const t=k=>T[S.lang][k]||k, $=s=>document.querySelector(s), app=$('#app');
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const img=(s,c='')=>`<img class="${c}" src="${s}" alt="" onerror="this.removeAttribute('src')">`;
+const sorted=()=>[...POSTS].sort((a,b)=>b.date.localeCompare(a.date));
+let stack=[],timer=null,pi=0;
+function theme(){document.body.parentElement.className=S.theme;document.documentElement.lang=S.lang;document.documentElement.dir=S.lang=='ar'?'rtl':'ltr'}
+function go(v,a){clearInterval(timer);stack.push([v,a]);V[v](a);scrollTo(0,0)}
+function back(){clearInterval(timer);stack.pop();const[v,a]=stack[stack.length-1]||['home'];if(!stack.length)stack.push(['home']);V[v](a)}
+function page(title,body){app.innerHTML=`<div class="top"><button onclick="back()">${S.lang=='ar'?'›':'‹'}</button><span>${title}</span></div><div class="pg">${body}</div>`}
+const addPts=(p,g)=>{ST.pts+=p;if(g)ST.games++;save()};
+
+/* ---------- الصفحات ---------- */
+const V={};
+V.home=()=>{stack=[['home']];const ps=sorted().slice(0,3),p=ps[pi%ps.length];
+app.innerHTML=`<div class="hero"><button class="ic l" onclick="menu()">☰</button><button class="ic r" onclick="go('profile')">👤</button>
+${img(SITE.photo,'av')}<h1>${SITE.name}</h1><p>${SITE.uni}</p><p>${SITE.fac} • ${SITE.batch}</p></div>
+<div class="bar"><span style="font-size:24px">📣</span><div class="mq"><span>${TICKER.join('  ✦  ')}</span></div></div>
+<div class="card"><div class="post"><div style="flex:1"><span class="tag">${t('latest')}</span><h3 style="margin-top:8px">${esc(p.title)}</h3><div class="clamp">${esc(p.text)}</div><button class="btn" onclick="go('posts')">${t('all')}</button></div>${img(p.image,'ph')}</div>
+<div class="dots">${ps.map((_,i)=>`<i class="${i==pi%ps.length?'on':''}" onclick="pi=${i};V.home()"></i>`).join('')}</div></div>
+<div class="tiles">${[['quiz','📋'],['lib','📖'],['kit','🧰'],['games','🎮'],['news','📰'],['tools','⚙️']].map(([k,e])=>`<button class="tile" onclick="go('${k}')"><b>${e}</b>${t(k)}</button>`).join('')}</div>
+<a class="sup" href="mailto:${SITE.email}">🎧 ${t('sup')}</a>
+<div class="foot">© 2026 ${SITE.name} — ${t('rights')}</div>`}
+function menu(){const d=document.createElement('div');d.className='drawer';d.onclick=e=>{if(e.target==d)d.remove()};
+d.innerHTML=`<div><h3>${t('home')}</h3><br>${['quiz','lib','kit','games','news','tools'].map(k=>`<button class="m" data-g="${k}">${t(k)}</button>`).join('')}<button class="m" data-g="about">ℹ️ ${t('about')}</button><hr><h4>${t('set')}</h4><br><button class="m" id="th">🌙 ${t('dark')}</button><button class="m" id="lg">🌐 ${t('lang')}</button></div>`;
+document.body.append(d);d.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{d.remove();go(b.dataset.g)});
+$('#th').onclick=()=>{S.theme=S.theme=='dark'?'light':'dark';save();theme()};$('#lg').onclick=()=>{S.lang=S.lang=='ar'?'en':'ar';save();theme();d.remove();V.home()}}
+V.about=()=>page(t('about'),`<div class="card" style="margin:0;line-height:2">${S.lang=='ar'?`<h3>منصة طلاب الصحة العامة</h3><p>هذه المنصة مقدمة من <b>عرفة الدود</b> لدعم طلاب كلية الصحة العامة بجامعة الزعيم الأزهري. أنا طالبة من الدفعة 31، وبنيتها لتكون رفيقاً لكم في الاختبارات والمراجع والأدوات.</p><p>وكلمة من القلب: من وجد في هذه المنصة فائدة فليدعُ لوالدي بالرحمة والمغفرة، فقد جعلتها وقفاً له. جزاكم الله خيراً.</p>`:`<h3>Public Health Students Platform</h3><p>Presented by <b>Arafa Al dood</b> to support Faculty of Public Health students at Al-Zaeem Al-Azhari University (Batch 31).</p><p>From the heart: if you find any benefit here, please pray for my father — I made this platform an endowment (waqf) in his name.</p>`}<p>📧 <a href="mailto:${SITE.email}">${SITE.email}</a></p></div>`);
+V.posts=()=>page(t('posts'),sorted().map(p=>`<div class="item">${img(p.image)}<small>📅 ${p.date}</small><h3>${esc(p.title)}</h3><p style="font-size:15px;opacity:1">${esc(p.text)}</p></div>`).join(''));
+V.news=()=>{const[f,...r]=HNEWS;page(t('news'),`<div class="g2 news"><div class="item big">${img(f.image)}<h3 style="font-size:20px">${esc(f.title)}</h3><p>${esc(f.text)}</p></div>${r.map(n=>`<div class="item">${img(n.image)}<h3>${esc(n.title)}</h3><p>${esc(n.text)}</p></div>`).join('')}</div>`)};
+
+/* ---------- الاختبارات ---------- */
+V.quiz=()=>page(t('quiz'),SUBJECTS.map(s=>`<div class="item"><h3>${s.name}</h3><p>${s.desc} (${s.questions.length})</p><button class="btn" onclick="go('qsetup','${s.id}')">${t('start')}</button></div>`).join(''));
+V.qsetup=id=>{const s=SUBJECTS.find(x=>x.id==id);page(s.name,`<div class="card" style="margin:0"><label>عدد الأسئلة (1 – ${s.questions.length})</label><input id="qn" type="number" min="1" max="${s.questions.length}" value="${s.questions.length}"><label>الوقت بالدقائق (0 = بدون وقت)</label><input id="qt" type="number" min="0" value="${Math.max(1,s.questions.length)}"><button class="btn" id="go">${t('start')}</button></div>`);
+$('#go').onclick=()=>runQuiz(s.name,shuf(s.questions).slice(0,Math.min(s.questions.length,Math.max(1,+$('#qn').value||1))),(+$('#qt').value||0)*60,'quiz')};
+function runQuiz(name,qs,secs,kind){qs=qs.map(q=>({q:q.q,o:shuf(q.o.map((x,i)=>({x,c:i==0}))),a:null}));let i=0,left=secs;
+const end=()=>{clearInterval(timer);const c=qs.filter(q=>q.a!=null&&q.o[q.a].c).length,pc=Math.round(c/qs.length*100);
+if(kind=='quiz'){ST.hist.push({n:name,c,t:qs.length,pc,d:new Date().toLocaleDateString()});addPts(c*10)}else addPts(c*5,true);
+page(name,`<div class="card" style="margin:0;text-align:center"><h2>${pc}%</h2><p>${c} / ${qs.length}</p></div>${qs.map(q=>`<div class="item"><b>${esc(q.q)}</b>${q.o.map((o,k)=>`<div class="opt ${o.c?'ok':q.a==k?'no':''}">${esc(o.x)}</div>`).join('')}</div>`).join('')}<button class="btn" onclick="go('home')">${t('home')}</button>`)};
+const show=()=>{const q=qs[i];page(name,`<div class="row" style="justify-content:space-between"><b>${i+1}/${qs.length}</b><b id="tm">${secs?fmt(left):''}</b></div><h3 style="margin:10px 0">${esc(q.q)}</h3>${q.o.map((o,k)=>`<button class="opt ${q.a==k?'sel':''}" data-k="${k}">${esc(o.x)}</button>`).join('')}<div class="row"><button class="btn o" id="pv">‹</button><button class="btn" id="nx">${i==qs.length-1?'✔':'›'}</button></div>`);
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{q.a=+b.dataset.k;show()});$('#pv').onclick=()=>{if(i>0){i--;show()}};$('#nx').onclick=()=>{if(i==qs.length-1)end();else{i++;show()}}};
+const fmt=s=>`${s/60|0}:${String(s%60).padStart(2,'0')}`;show();
+if(secs)timer=setInterval(()=>{left--;const e=$('#tm');if(e)e.textContent=fmt(left);if(left<=0)end()},1000)}
+
+/* ---------- المكتبة ---------- */
+V.lib=()=>{page(t('lib'),`<input id="sq" placeholder="🔍 ..."><div id="bl"></div>`);const r=()=>{const q=$('#sq').value.toLowerCase();$('#bl').innerHTML=`<div class="g2">${BOOKS.filter(b=>(b.title+b.desc).toLowerCase().includes(q)).map(b=>`<div class="item">${img(b.image)}<h3>${esc(b.title)}</h3><p>${esc(b.desc)}</p><div class="row"><a class="btn" target="_blank" href="${b.pdf}">${t('read')}</a><a class="btn o" download href="${b.pdf}">${t('dl')}</a></div></div>`).join('')}</div>`};$('#sq').oninput=r;r()};
+
+/* ---------- حزمة الأدوات ---------- */
+V.kit=(tab='site')=>{const L={site:'مواقع',tool:'أدوات',app:'تطبيقات'};page(t('kit'),`<div class="tabs">${Object.keys(L).map(k=>`<button class="${k==tab?'on':''}" onclick="V.kit('${k}')">${L[k]}</button>`).join('')}</div><div class="g2">${KIT.filter(k=>k.type==tab).map(k=>`<div class="item">${img(k.image)}<h3>${esc(k.name)}</h3><p>${esc(k.desc)}</p><a class="btn" target="_blank" rel="noopener" href="${k.link}">${t('open')}</a></div>`).join('')}</div>`)};
+
+/* ---------- الألعاب ---------- */
+V.games=()=>page(t('games'),[['mem','🃏 تطابق الصور'],['wd','✏️ إكمال الكلمات الإنجليزية'],['sc','🔤 ترتيب الحروف'],['tf','✅ صح أم خطأ'],['qc','⚡ تحدي سريع']].map(([k,n])=>`<button class="tile" style="width:100%;margin-bottom:10px;padding:18px" onclick="go('g_${k}')">${n}</button>`).join(''));
+V.g_mem=()=>{const em=['💉','🦠','🧼','🍎','🩺','💊','🏃','💧'];let c=shuf([...em,...em]),op=[],done=0,mv=0;const r=()=>{page('🃏',`<p>الحركات: ${mv}</p><div class="mem">${c.map((e,i)=>`<button class="${op.includes(i)||c[i]==null?'up':''}" data-i="${i}">${op.includes(i)?e:c[i]==null?'✔':''}</button>`).join('')}</div>`);
+document.querySelectorAll('.mem button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(op.length>1||op.includes(i)||c[i]==null)return;op.push(i);r();if(op.length==2){mv++;const[a,b2]=op;if(c[a]==c[b2]){c[a]=c[b2]=null;op=[];done++;if(done==8){addPts(Math.max(10,50-mv*2),true);return setTimeout(()=>{alert('🎉 '+mv);V.games()},300)}}else setTimeout(()=>{op=[];r()},700)}r()})};r()};
+function wordGame(scr){let n=0,ok=0,ws=shuf(WORDS).slice(0,5);const r=()=>{if(n==5){addPts(ok*5,true);return page('🏁',`<div class="card" style="margin:0;text-align:center"><h2>${ok}/5</h2></div>`)}const w=ws[n];let hint;if(scr)hint=shuf(w.split('')).join('').toLowerCase();else{const h=new Set(shuf([...w.keys()]).slice(0,Math.ceil(w.length/3)));hint=[...w].map((ch,i)=>h.has(i)?'_':ch).join(' ')}
+page('✏️',`<h2 dir="ltr" style="text-align:center;margin:20px">${hint}</h2><input id="a" dir="ltr" autocomplete="off"><button class="btn" id="ck">✔</button><div id="m"></div>`);$('#ck').onclick=()=>{const g=$('#a').value.trim().toLowerCase()==w.toLowerCase();if(g)ok++;$('#m').innerHTML=`<div class="res">${g?'✅':'❌ '+w}</div>`;n++;setTimeout(r,900)}};r()}
+V.g_wd=()=>wordGame(0);V.g_sc=()=>wordGame(1);
+V.g_tf=()=>{const qs=shuf(TF).slice(0,6);let i=0,ok=0;const r=()=>{if(i==qs.length){addPts(ok*5,true);return page('🏁',`<div class="card" style="margin:0;text-align:center"><h2>${ok}/${qs.length}</h2></div>`)}page('✅',`<h3 style="margin:16px 0">${qs[i][0]}</h3><button class="opt" data-v="1">✅ صح</button><button class="opt" data-v="0">❌ خطأ</button>`);document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(+b.dataset.v==qs[i][1])ok++;i++;r()})};r()};
+V.g_qc=()=>runQuiz('⚡',shuf(SUBJECTS.flatMap(s=>s.questions)).slice(0,5),0,'game');
+
+/* ---------- الأدوات المساعدة ---------- */
+const TL=[['calc','🧮 آلة حاسبة متطورة'],['epi','🦠 حاسبات الوبائيات'],['bio','📊 الإحصاء الحيوي'],['ss','👥 حجم العينة'],['bmi','⚖️ مؤشر كتلة الجسم'],['ref','📚 تنظيم المراجع']];
+V.tools=()=>page(t('tools'),TL.map(([k,n])=>`<button class="tile" style="width:100%;margin-bottom:10px;padding:16px" onclick="go('t_${k}')">${n}</button>`).join('')+`<div class="item"><h3>📝 الاستبيانات • 🗺️ الخرائط الصحية</h3><p>قريباً .. قيد التطوير.</p></div>`);
+const num=id=>parseFloat($('#'+id).value);
+V.t_calc=()=>{page('🧮',`<input id="d" dir="ltr" readonly value=""><div class="cg">${['C','(',')','⌫','7','8','9','÷','4','5','6','×','1','2','3','−','0','.','^','+','√','%','='].map(k=>`<button data-k="${k}">${k}</button>`).join('')}</div>`);
+document.querySelectorAll('.cg button').forEach(b=>b.onclick=()=>{const d=$('#d'),k=b.dataset.k;if(k=='C')d.value='';else if(k=='⌫')d.value=d.value.slice(0,-1);else if(k=='='||k=='√'){try{let e=d.value.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/\^/g,'**').replace(/(\d+(\.\d+)?)%/g,'($1/100)');if(!/^[\d+\-*/().\s]+$/.test(e))throw 0;let v=Function('"use strict";return('+e+')')();if(k=='√')v=Math.sqrt(v);d.value=+v.toFixed(8)}catch(e){d.value='خطأ'}}else{if(d.value=='خطأ')d.value='';d.value+=k}})};
+V.t_epi=()=>{page('🦠',`<div class="card" style="margin:0"><h3>الحدوث / الانتشار</h3><input id="c" type="number" placeholder="عدد الحالات"><input id="n" type="number" placeholder="حجم السكان"><input id="b" type="number" value="1000" placeholder="لكل (مثلاً 1000)"><button class="btn" id="r1">احسب</button><div id="o1"></div><hr><h3>RR / OR (جدول 2×2)</h3><div class="g2"><input id="a" type="number" placeholder="a مصاب+معرض"><input id="bb" type="number" placeholder="b غير مصاب+معرض"><input id="cc" type="number" placeholder="c مصاب+غير معرض"><input id="dd" type="number" placeholder="d غير مصاب+غير معرض"></div><button class="btn" id="r2">احسب</button><div id="o2"></div></div>`);
+$('#r1').onclick=()=>{const v=num('c')/num('n')*num('b');$('#o1').innerHTML=`<div class="res">${v.toFixed(2)} لكل ${num('b')}</div>`};
+$('#r2').onclick=()=>{const a=num('a'),b=num('bb'),c=num('cc'),d=num('dd');$('#o2').innerHTML=`<div class="res">RR = ${((a/(a+b))/(c/(c+d))).toFixed(3)}<br>OR = ${((a*d)/(b*c)).toFixed(3)}</div>`}};
+V.t_bio=()=>{page('📊',`<div class="card" style="margin:0"><textarea id="l" rows="3" dir="ltr" placeholder="12, 15, 9, 20"></textarea><button class="btn" id="r">احسب</button><div id="o"></div></div>`);$('#r').onclick=()=>{const x=$('#l').value.split(/[,\s]+/).map(Number).filter(v=>!isNaN(v)&&v!==0||v===0).filter(v=>Number.isFinite(v));if(x.length<2)return;const n=x.length,m=x.reduce((a,b)=>a+b)/n,s=[...x].sort((a,b)=>a-b),md=n%2?s[n>>1]:(s[n/2-1]+s[n/2])/2,vr=x.reduce((a,b)=>a+(b-m)**2,0)/(n-1);
+$('#o').innerHTML=`<div class="res">n = ${n}<br>المتوسط = ${m.toFixed(3)}<br>الوسيط = ${md}<br>التباين = ${vr.toFixed(3)}<br>الانحراف المعياري = ${Math.sqrt(vr).toFixed(3)}<br>الأصغر = ${s[0]} • الأكبر = ${s[n-1]}</div>`}};
+V.t_ss=()=>{page('👥',`<div class="card" style="margin:0"><label>نسبة الانتشار المتوقعة % (50 إن كانت مجهولة)</label><input id="p" type="number" value="50"><label>هامش الخطأ %</label><input id="e" type="number" value="5"><label>حجم المجتمع (اختياري)</label><input id="N" type="number"><button class="btn" id="r">احسب</button><div id="o"></div></div>`);$('#r').onclick=()=>{const p=num('p')/100,e=num('e')/100,N=num('N');let n=1.96**2*p*(1-p)/e**2;if(N>0)n=n/(1+(n-1)/N);$('#o').innerHTML=`<div class="res">العينة المطلوبة ≈ ${Math.ceil(n)} (ثقة 95%)</div>`}};
+V.t_bmi=()=>{page('⚖️',`<div class="card" style="margin:0"><input id="w" type="number" placeholder="الوزن (كجم)"><input id="h" type="number" placeholder="الطول (سم)"><button class="btn" id="r">احسب</button><div id="o"></div></div>`);$('#r').onclick=()=>{const b=num('w')/(num('h')/100)**2,c=b<18.5?'نحافة':b<25?'طبيعي':b<30?'وزن زائد':'سمنة';$('#o').innerHTML=`<div class="res">${b.toFixed(1)} — ${c}</div>`}};
+V.t_ref=()=>{const R=load('ph_refs',[]);page('📚',`<textarea id="x" rows="3" placeholder="الصق مرجعاً (APA مثلاً)"></textarea><button class="btn" id="ad">إضافة</button><hr>${R.sort().map((r,i)=>`<div class="item" style="direction:ltr">${esc(r)} <button class="btn r" data-i="${i}">✕</button></div>`).join('')}`);
+$('#ad').onclick=()=>{const v=$('#x').value.trim();if(v){R.push(v);localStorage.ph_refs=JSON.stringify(R);V.t_ref()}};document.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{R.splice(+b.dataset.i,1);localStorage.ph_refs=JSON.stringify(R);V.t_ref()})};
+
+/* ---------- الملف الشخصي ---------- */
+const form=u=>`<div class="card" style="margin:0"><label>الاسم</label><input id="pn" value="${esc(u.n||'')}"><label>الجامعة</label><input id="pu" value="${esc(u.u||'')}"><label>الكلية</label><input id="pf" value="${esc(u.f||'')}"><label>الدفعة</label><input id="pb" value="${esc(u.b||'')}"><button class="btn" id="sv">حفظ</button></div>`;
+const bindForm=()=>$('#sv').onclick=()=>{const n=$('#pn').value.trim();if(!n)return alert('الاسم مطلوب');U={n,u:$('#pu').value,f:$('#pf').value,b:$('#pb').value};save();stack=[['home'],['profile']];V.profile()};
+V.profile=()=>{if(!U){page(t('prof'),form({}));return bindForm()}const h=ST.hist,avg=h.length?Math.round(h.reduce((a,b)=>a+b.pc,0)/h.length):0;
+page(t('prof'),`<div class="card" style="margin:0;text-align:center"><div style="font-size:50px">🎓</div><h2>${esc(U.n)}</h2><p>${esc(U.u)} • ${esc(U.f)} • ${esc(U.b)}</p><div class="stat"><div><b>${ST.pts}</b>نقاط</div><div><b>${h.length}</b>اختبارات</div><div><b>${avg}%</b>المعدل</div></div><p>🎮 ألعاب: ${ST.games}</p></div><h3 style="margin:14px 0 6px">سجل الاختبارات</h3>${h.slice().reverse().map(x=>`<div class="item"><b>${esc(x.n)}</b> — ${x.c}/${x.t} (${x.pc}%) <small>${x.d}</small></div>`).join('')||'<p>لا توجد اختبارات بعد.</p>'}<div class="row"><button class="btn" onclick="go('pedit')">تعديل</button><button class="btn r" id="del">حذف الحساب</button></div>`);
+$('#del').onclick=()=>{if(confirm('حذف الحساب وكل النشاط؟')){U=null;ST={pts:0,games:0,hist:[]};save();V.home()}}};
+V.pedit=()=>{page('تعديل',form(U));bindForm()};
+
+theme();V.home();
+</script>
+</body>
+</html>
