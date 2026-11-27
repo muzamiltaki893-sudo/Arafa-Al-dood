@@ -15,7 +15,7 @@ const POSTS=[
 /* المواد: في كل سؤال الخيار الأول o[0] هو الصحيح — يقوم البرنامج بخلط الخيارات تلقائياً فلا يثبت موضع الإجابة */
 /* المواد: بيانات تعريف المواد هنا، وأسئلة كل مادة في ملف JSON مستقل داخل مجلد questions */
 const SUBJECTS=[
-{id:"epi",name:"الوبائيات",desc:"دراسة توزيع الأمراض ومحدداتها في المجتمع.",questionFile:"questions/epi.json",questions:[]},
+{id:"epi",name:"Environmental Health",desc:"ويهتم بدراسة العوامل البيئية المحيطة بالإنسان التي تؤثر في صحته، والعمل على منع المخاطر والأمراض الناتجة عنها..",questionFile:"questions/epi.json",questions:[]},
 {id:"bio",name:"الإحصاء الحيوي",desc:"تطبيق الطرق الإحصائية على البيانات الصحية.",questionFile:"questions/bio.json",questions:[]},
 {id:"env",name:"صحة البيئة",desc:"أثر البيئة على صحة الإنسان.",questionFile:"questions/env.json",questions:[]},
 {id:"hep",name:"تعزيز الصحة والتثقيف",desc:"أساليب نشر الوعي وتغيير السلوك الصحي.",questionFile:"questions/hep.json",questions:[]},
